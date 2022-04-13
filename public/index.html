@@ -1,0 +1,82 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <button id="initiate-dialer">Initiate</button>
+    <select id="speaker-devices"></select>
+    <select id="ringtone-devices"></select>
+
+    <input id="phone-number" />
+    <button id="make-call">call</button>
+
+    <script src="src/jquery.min.js"></script>
+    <script src="src/twilio.min.js"></script>
+    <script src="lib/util.js"></script>
+    <script src="lib/audioDevices.js"></script>
+    <script src="lib/incomingCallHandler.js"></script>
+    <script src="lib/outgoingCallHandler.js"></script>
+    <script>
+        // SETUP STEP 1: Initiate Dialer
+        document.getElementById("initiate-dialer").addEventListener("click", startupClient);
+
+        // SETUP STEP 2: Request an Access Token
+        async function startupClient() {
+            log("Requesting Access Token...");
+
+            try {
+                const data = await $.getJSON("/token");
+                log("Got a token.");
+                token = data.token;
+                log(data.identity);
+                intitializeDevice();
+            } catch (err) {
+                console.log(err);
+                log("An error occurred. See your browser console for more information.");
+            }
+        }
+
+        // SETUP STEP 3:
+        // Instantiate a new Twilio.Device
+        function intitializeDevice() {
+            log("Initializing device");
+            device = new Twilio.Device(token, {
+                logLevel: 1,
+                // Set Opus as our preferred codec. Opus generally performs better, requiring less bandwidth and
+                // providing better audio quality in restrained network conditions.
+                codecPreferences: ["opus", "pcmu"],
+            });
+
+            addDeviceListeners(device);
+            // Device must be registered in order to receive incoming calls
+            device.register();
+        }
+
+        // SETUP STEP 4:
+        // Listen for Twilio.Device states
+        function addDeviceListeners(device) {
+            device.on("registered", function () {
+                log("Twilio.Device Ready to make and receive calls!");
+                // callControlsDiv.classList.remove("hide");
+            });
+
+            device.on("error", function (error) {
+                log("Twilio.Device Error: " + error.message);
+            });
+
+            device.on("incoming", handleIncomingCall);
+
+            device.audio.on("deviceChange", updateAllAudioDevices.bind(device));
+
+            // Show audio selection UI if it is supported by the browser.
+            if (device.audio.isOutputSelectionSupported) {
+
+                // audioSelectionDiv.classList.remove("hide");
+            }
+        }
+    </script>
+</body>
+
+</html>
