@@ -44,11 +44,11 @@ router.get('/auth/pipedrive/callback', passport.authenticate('pipedrive', {
     successRedirect: '/'
 }));
 
+// Redirect to Pipedrive OAuth if users lack authorization
 router.use((req, res, next) => {
     if (req.user.length < 1) {
         return res.redirect('/auth/pipedrive');
     } else {
-        console.log(req.user);
         next();
     }
 });

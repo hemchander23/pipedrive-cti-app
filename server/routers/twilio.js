@@ -9,9 +9,8 @@ const router = new Router();
 router.get("/token", (req, res) => {
     res.send(tokenGenerator());
 });
-
+// Incoming voice call
 router.post("/voice", (req, res) => {
-    console.log("Incoming call")
     res.set("Content-Type", "text/xml");
     res.send(voiceResponse(req.body));
 });

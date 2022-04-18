@@ -30,8 +30,6 @@ exports.tokenGenerator = function tokenGenerator() {
 };
 
 exports.voiceResponse = function voiceResponse(requestBody) {
-    console.log(requestBody)
-    console.log(config)
     const toNumberOrClientName = requestBody.To;
     const callerId = config.callerId;
     let twiml = new VoiceResponse();
@@ -40,7 +38,6 @@ exports.voiceResponse = function voiceResponse(requestBody) {
     // then it is an incoming call towards your Twilio.Device.
     if (toNumberOrClientName == callerId) {
         let dial = twiml.dial();
-        console.log(identity)
         // This will connect the caller with your Twilio.Device/client 
         dial.client(identity);
 
