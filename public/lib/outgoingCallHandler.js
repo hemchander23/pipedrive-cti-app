@@ -1,6 +1,5 @@
 document.getElementById("make-call").addEventListener("click", makeOutgoingCall);
 
-
 async function makeOutgoingCall() {
     const callNum = document.getElementById("phone-number").value;
 
@@ -19,9 +18,18 @@ async function makeOutgoingCall() {
 
         // add listeners to the Call
         // "accepted" means the call has finished connecting and the state is now "open"
-        call.on("accept", updateUIAcceptedOutgoingCall);
-        call.on("disconnect", updateUIDisconnectedOutgoingCall);
-        call.on("cancel", updateUIDisconnectedOutgoingCall);
+        call.on("accept", () => {
+            log('The call has been accepted.');
+            $('#reject-call').removeClass('invisible');
+        });
+        call.on("disconnect", () => {
+            log('The call has been disconnected.');
+            resetDialState();
+        });
+        call.on("cancel", () => {
+            log('The call has been canceled.');
+            resetDialState();
+        });
 
         outgoingCallHangupButton.onclick = () => {
             log("Hanging up ...");

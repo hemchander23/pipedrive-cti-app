@@ -4,24 +4,34 @@
             log(`Incoming call from ${call.parameters.From}`);
 
             //show incoming call div and incoming phone number
-            incomingCallDiv.classList.remove("hide");
-            incomingPhoneNumberEl.innerHTML = call.parameters.From;
+            $('#reject-call').removeClass('invisible');
+            $('#answer-call').removeClass('invisible');
+            $('#caller-details').html(`<b>Incoming call from ${call.parameters.From}</b>`);
 
             //add event listeners for Accept, Reject, and Hangup buttons
-            incomingCallAcceptButton.onclick = () => {
-                acceptIncomingCall(call);
+            $('#answer-call').onclick = () => {
+                call.accept();
             };
 
-            incomingCallRejectButton.onclick = () => {
-                rejectIncomingCall(call);
+            $('#reject-call').onclick = () => {
+                call.reject();
             };
 
-            incomingCallHangupButton.onclick = () => {
-                hangupIncomingCall(call);
+            $('#reject-call').onclick = () => {
+                call.disconnect();
             };
 
             // add event listener to call object
-            call.on("cancel", handleDisconnectedIncomingCall);
-            call.on("disconnect", handleDisconnectedIncomingCall);
-            call.on("reject", handleDisconnectedIncomingCall);
+            call.on("cancel", () => {
+                log('The call has been canceled.');
+                resetDialState();
+            });
+            call.on("disconnect", () => {
+                log('The call has been disconnected.');
+                resetDialState();
+            });
+            call.on("reject", () => {
+                log('The call has been rejected.');
+                resetDialState();
+            });
         }

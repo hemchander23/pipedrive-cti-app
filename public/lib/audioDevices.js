@@ -1,6 +1,6 @@
 // Get audio devices 
 const speakerDevices = document.getElementById("speaker-devices");
-const ringtoneDevices = document.getElementById("ringtone-devices");
+const ringtoneDevices = document.getElementById("mic-devices");
 
 async function getAudioDevices() {
     await navigator.mediaDevices.getUserMedia({
@@ -11,8 +11,6 @@ async function getAudioDevices() {
 
 function updateAllAudioDevices() {
     if (device) {
-        console.log(device)
-        console.log(device.audio.availableOutputDevices)
         updateDevices(speakerDevices, device.audio.speakerDevices.get());
         updateDevices(ringtoneDevices, device.audio.ringtoneDevices.get());
     }
@@ -20,8 +18,6 @@ function updateAllAudioDevices() {
 
 function updateDevices(selectEl, selectedDevices) {
     selectEl.innerHTML = "";
-    console.log("AVL DEVICES");
-    console.log(device.audio.availableOutputDevices);
     device.audio.availableOutputDevices.forEach(function (device, id) {
         var isActive = selectedDevices.size === 0 && id === "default";
         selectedDevices.forEach(function (device) {
