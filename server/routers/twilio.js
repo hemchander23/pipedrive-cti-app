@@ -2,7 +2,7 @@ const Router = require("express").Router;
 const {
     tokenGenerator,
     voiceResponse
-} = require("./handler");
+} = require("../utils/twilio_handler");
 
 const router = new Router();
 
