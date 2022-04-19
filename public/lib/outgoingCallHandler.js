@@ -31,10 +31,10 @@ async function makeOutgoingCall() {
             resetDialState();
         });
 
-        outgoingCallHangupButton.onclick = () => {
+        $("#reject-call").on('click', () => {
             log("Hanging up ...");
             call.disconnect();
-        };
+        });
 
     } else {
         log("Unable to make call.");

@@ -9,17 +9,17 @@
             $('#caller-details').html(`<b>Incoming call from ${call.parameters.From}</b>`);
 
             //add event listeners for Accept, Reject, and Hangup buttons
-            $('#answer-call').onclick = () => {
+            $('#answer-call').on('click', () => {
                 call.accept();
-            };
+            });
 
-            $('#reject-call').onclick = () => {
+            $('#reject-call').on('click', () => {
                 call.reject();
-            };
+            });
 
-            $('#reject-call').onclick = () => {
+            $('#reject-call').on('click', () => {
                 call.disconnect();
-            };
+            });
 
             // add event listener to call object
             call.on("cancel", () => {
