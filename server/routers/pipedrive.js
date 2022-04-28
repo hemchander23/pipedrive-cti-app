@@ -15,9 +15,9 @@ passport.use(
     new OAuth2Strategy({
         authorizationURL: 'https://oauth.pipedrive.com/oauth/authorize',
         tokenURL: 'https://oauth.pipedrive.com/oauth/token',
-        clientID: config.clientID || '',
-        clientSecret: config.clientSecret || '',
-        callbackURL: config.callbackURL || ''
+        clientID: config.clientID || '<YOUR_CLIENT_ID>',
+        clientSecret: config.clientSecret || '<YOUR_CLIENT_SECRET>',
+        callbackURL: config.callbackURL || '<YOUR_CALLBACK_URL>'
     }, async (accessToken, refreshToken, profile, done) => {
         const userInfo = await api.getUser(accessToken);
         const user = await User.add(

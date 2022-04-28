@@ -26,6 +26,7 @@ exports.tokenGenerator = function tokenGenerator() {
     return {
         identity: identity,
         token: accessToken.toJwt(),
+        phone_number: process.env.TWILIO_CALLER_ID
     };
 };
 

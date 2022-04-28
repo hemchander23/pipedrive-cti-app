@@ -30,11 +30,15 @@
                 </div>
 
                 <div class="col-sm-4 order-first">
+                    <label for="caller-alias" class="form-label" >🎭 Your Caller Alias</label>
+                    <input type="text" readonly class="form-control mb-3" id="caller-alias" placeholder="* * *">
+
+                    
                     <label for="caller-id" class="form-label">🎫 Your Caller ID</label>
                     <input type="text" readonly class="form-control mb-3" id="caller-id" placeholder="* * *">
 
                     <label for="phone-number" class="form-label">📞 Phone Number</label>
-                    <input type="text" class="form-control mb-3" id="phone-number" placeholder="Enter number">
+                    <input type="text" class="form-control mb-3" id="phone-number" placeholder="Enter number to dial">
 
 
                     <div class="d-grid gap-2  mb-3">
@@ -82,7 +86,8 @@
                 log("Got a token.");
                 token = data.token;
                 log(data.identity);
-                $('#caller-id').val(data.identity)
+                $('#caller-alias').val(data.identity)
+                $('#caller-id').val(data.phone_number)
                 getAudioDevices();
                 intitializeDevice();
             } catch (err) {
