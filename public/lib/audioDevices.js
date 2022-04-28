@@ -11,14 +11,14 @@ async function getAudioDevices() {
 
 function updateAllAudioDevices() {
     if (device) {
-        updateDevices(speakerDevices, device.audio.speakerDevices.get());
-        updateDevices(ringtoneDevices, device.audio.ringtoneDevices.get());
+        updateDevices(speakerDevices, device.audio.speakerDevices.get(),'availableOutputDevices');
+        updateDevices(ringtoneDevices, device.audio.ringtoneDevices.get(),'availableInputDevices');
     }
 }
 
-function updateDevices(selectEl, selectedDevices) {
+function updateDevices(selectEl, selectedDevices,type) {
     selectEl.innerHTML = "";
-    device.audio.availableOutputDevices.forEach(function (device, id) {
+    device.audio[type].forEach(function (device, id) {
         var isActive = selectedDevices.size === 0 && id === "default";
         selectedDevices.forEach(function (device) {
             if (device.deviceId === id) {

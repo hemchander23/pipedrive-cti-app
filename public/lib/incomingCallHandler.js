@@ -6,6 +6,7 @@
             //show incoming call div and incoming phone number
             $('#reject-call').removeClass('invisible');
             $('#answer-call').removeClass('invisible');
+            $('#caller-details').removeClass('invisible');
             $('#caller-details').html(`<b>Incoming call from ${call.parameters.From}</b>`);
 
             //add event listeners for Accept, Reject, and Hangup buttons

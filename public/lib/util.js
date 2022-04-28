@@ -9,3 +9,10 @@ function resetDialState() {
     $('#answer-call').addClass('invisible');
     $('#caller-details').addClass('invisible');
 }
+
+$(function(){
+  const contact_hash = window.location.hash;
+  if(contact_hash){
+    $('#phone-number').val(contact_hash.replace('#',''))
+  }
+})

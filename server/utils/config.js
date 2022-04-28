@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== "test") {
 }
 
 // HTTP Port to run our web application
-cfg.port = process.env.PORT || 5050;
+cfg.port = process.env.PORT || 3000;
 // Your Pipedrive App OAuth Client credentials
 
 cfg.clientID = process.env.PIPEDRIVE_CLIENT_ID;
