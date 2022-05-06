@@ -2,7 +2,7 @@
 
 ![](https://developers.pipedrive.com/tutorials/codelabs/building-cti-phone-solutions-pipedrive-app/img/abfe63a936ef293.png)
 
-This app lets you build a simple caller app using Twilio. The accompanying tutorial can be found [here](https://developers.pipedrive.com/tutorials/codelabs/building-cti-phone-solutions-pipedrive-app/index.htm?index=..%2F..index#0).
+Lets you build a simple caller app using Twilio and Pipedrive APIs. The accompanying tutorial can be found [here](https://developers.pipedrive.com/tutorials/codelabs/building-cti-phone-solutions-pipedrive-app/index.htm?index=..%2F..index#0).
 
 
 ### What will we be doing?
