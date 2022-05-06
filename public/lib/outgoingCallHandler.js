@@ -1,3 +1,6 @@
+/**
+ * Handle outgoing calls and relevant UI changes
+ */
 document.getElementById("make-call").addEventListener("click", makeOutgoingCall);
 
 async function makeOutgoingCall() {

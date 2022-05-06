@@ -1,5 +1,8 @@
 const knex = require('./connection');
 
+/** 
+ * Create `users` table to store credentials associated with authorized users.
+ */
 async function createTable() {
     const tableExists = await knex.schema.hasTable('users');
 
@@ -14,13 +17,17 @@ async function createTable() {
         table.text('refresh_token');
     });
 }
-
+/**
+ * Gets a user record by `id`
+ */
 async function getById(id) {
     const user = await knex.from('users').select().where('id', id);
 
     return user;
 }
-
+/**
+ * Adds a new user record with the credentials obtained after authorization.
+ */
 async function add(username, access_token, refresh_token) {
     await knex('users').insert({
         username,

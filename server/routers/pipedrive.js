@@ -3,13 +3,13 @@ const router = new Router();
 const api = require('../utils/pipedrive_handler');
 const config = require('../utils/config');
 const User = require('../db/user');
-
+// Create a table to store details pertaining to authorized users
 User.createTable();
-//Pipedrive OAuth
+
 const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 
-// Authenticate using OAuth
+// Perform authorization, retrieve user details upon successful authorization and persist them.
 passport.use(
     'pipedrive',
     new OAuth2Strategy({
@@ -37,6 +37,8 @@ router.use(async (req, res, next) => {
     req.user = await User.getById(1);
     next();
 });
+
+// Authentication middlewares
 router.get('/auth/pipedrive', passport.authenticate('pipedrive'));
 router.get('/auth/pipedrive/callback', passport.authenticate('pipedrive', {
     session: false,

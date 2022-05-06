@@ -6,10 +6,12 @@ const {
 
 const router = new Router();
 
+// Token generation and authentication with Twilio
 router.get("/token", (req, res) => {
     res.send(tokenGenerator());
 });
-// Incoming voice call
+
+// Handle voice calls dynamically with this endpoint
 router.post("/voice", (req, res) => {
     res.set("Content-Type", "text/xml");
     res.send(voiceResponse(req.body));

@@ -1,4 +1,6 @@
-// Get audio devices 
+/**
+ * Get audio devices and update the UI for the user to select from
+ */
 const speakerDevices = document.getElementById("speaker-devices");
 const ringtoneDevices = document.getElementById("mic-devices");
 
@@ -11,12 +13,12 @@ async function getAudioDevices() {
 
 function updateAllAudioDevices() {
     if (device) {
-        updateDevices(speakerDevices, device.audio.speakerDevices.get(),'availableOutputDevices');
-        updateDevices(ringtoneDevices, device.audio.ringtoneDevices.get(),'availableInputDevices');
+        updateDevices(speakerDevices, device.audio.speakerDevices.get(), 'availableOutputDevices');
+        updateDevices(ringtoneDevices, device.audio.ringtoneDevices.get(), 'availableInputDevices');
     }
 }
 
-function updateDevices(selectEl, selectedDevices,type) {
+function updateDevices(selectEl, selectedDevices, type) {
     selectEl.innerHTML = "";
     device.audio[type].forEach(function (device, id) {
         var isActive = selectedDevices.size === 0 && id === "default";

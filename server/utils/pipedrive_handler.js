@@ -1,5 +1,7 @@
 const request = require('request-promise');
-
+/**
+ * Get details pertaining to an authorized user
+ */
 async function getUser(accessToken) {
     const requestOptions = {
         uri: 'https://api.pipedrive.com/v1/users/me',
@@ -13,39 +15,24 @@ async function getUser(accessToken) {
     return userInfo;
 }
 
-async function getDeals(accessToken) {
+/**
+ * Retrieve contact details associated with the company
+ * Note that you need to have `Contacts` OAuth scope to access these details
+ */
+async function getPersons(accessToken) {
     const requestOptions = {
-        uri: 'https://api.pipedrive.com/v1/deals',
+        uri: 'https://api.pipedrive.com/v1/persons',
         headers: {
             'Authorization': `Bearer ${accessToken}`
-        },
-        qs: {
-            status: 'open'
         },
         json: true
     };
-    const deals = await request(requestOptions);
+    const persons = await request(requestOptions);
 
-    return deals;
-}
-
-async function updateDeal(id, outcome, accessToken) {
-    const requestOptions = {
-        uri: `https://api.pipedrive.com/v1/deals/${id}`,
-        method: 'PUT',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`
-        },
-        json: {
-            status: outcome
-        }
-    };
-
-    await request(requestOptions);
+    return persons;
 }
 
 module.exports = {
     getUser,
-    getDeals,
-    updateDeal
+    getPersons
 };

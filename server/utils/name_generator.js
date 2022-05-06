@@ -1,3 +1,7 @@
+/**
+ * These are random names which act as aliases. Also known as identities, 
+ * these values individually identify a client in a caller setup.
+ */
 const ADJECTIVES = [
   "Awesome",
   "Bold",

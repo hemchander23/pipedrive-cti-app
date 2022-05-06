@@ -6,7 +6,10 @@ const nameGenerator = require("./name_generator");
 const config = require("./config");
 
 var identity;
-
+/**
+ * Generates short-lived access tokens to authorize the SDK to perform voice calls
+ * `identity` is very similar to an username. For simplicity sake, this is represented as `Caller Alias` in the UI
+ */
 exports.tokenGenerator = function tokenGenerator() {
     identity = nameGenerator();
 
@@ -30,6 +33,9 @@ exports.tokenGenerator = function tokenGenerator() {
     };
 };
 
+/**
+ * Instructs how to handle calls
+ */
 exports.voiceResponse = function voiceResponse(requestBody) {
     const toNumberOrClientName = requestBody.To;
     const callerId = config.callerId;
@@ -65,8 +71,6 @@ exports.voiceResponse = function voiceResponse(requestBody) {
 
 /**
  * Checks if the given value is valid as phone number
- * @param {Number|String} number
- * @return {Boolean}
  */
 function isAValidPhoneNumber(number) {
     return /^[\d\+\-\(\) ]+$/.test(number);
