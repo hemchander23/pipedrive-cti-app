@@ -16,4 +16,4 @@ You can try out the app almost instantly by remixing the Glitch App.
 
 [![Remix on Glitch](https://cdn.gomix.com/f3620a78-0ad3-4f81-a271-c8a4faa20f86%2Fremix-button.svg)](https://glitch.com/edit/#!/remix/pipedrive-phone-app)
 
-> Instructions to setup and run the app can be found in the [linked tutorial](https://developers.pipedrive.com/tutorials/codelabs/building-cti-phone-solutions-pipedrive-app/index.htm?index=..%2F..index#0).
+> Instructions to setup and run the app can be found in the [linked tutorial](https://developers.pipedrive.com/tutorials/codelabs/building-cti-phone-solutions-pipedrive-app/index.htm?index=..%2F..index#0). Special credits to Twilio DevEd team for the [SDK tutorials](https://github.com/TwilioDevEd/voice-javascript-sdk-quickstart-node). 
